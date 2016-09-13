@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My react test</title>
+  <script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.js"></script>
+  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+  <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+  <style>
+    p {
+      margin: 0px 2px;
+    }
+    .newsItem {
+      margin-bottom: 30px;
+    }
+    .none {
+  display: none !important;
+}
+
+body {
+  background: rgba(0, 102, 255, 0.38);
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0 0 5px;
+}
+
+.article {
+  background: #FFF;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+  width: 600px;
+  margin: 0 0 5px;
+  box-shadow: 2px 2px 5px -1px rgb(0, 81, 202);
+  padding: 3px 5px;
+}
+
+.news__author {
+  text-decoration: underline;
+  color: #007DDC;
+}
+.news__count {
+  margin: 10px 0 0 0;
+  display: block;
+}
+
+
+.add {
+  margin: 0 5px 5px 0;
+  width: 210px;
+  border: 1px dashed rgba(0, 89, 181, 0.82);
+  padding: 5px;
+}
+.add__author, .add__text, .add__btn, .add__checkrule {
+  display: block;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  width: 94%;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+}
+.add__checkrule {
+  border: none;
+  font-size: 12px;
+}
+.add__btn {
+  box-sizing: content-box;
+  color: #FFF;
+  text-transform: uppercase;
+  background: #007DDC;
+}
+.add__btn:disabled {
+  background: #CCC;
+  color: #999;
+}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="author">Мишка-Мишка</div>
+  <script type="text/babel">
+  var my_news = [
+  {
+    author: 'Саша Печкин',
+    text: 'В четчерг, четвертого числа...',
+    bigText: 'в четыре с четвертью часа четыре чёрненьких чумазеньких чертёнка чертили чёрными чернилами чертёж.'
+  },
+  {
+    author: 'Просто Вася',
+    text: 'Считаю, что $ должен стоить 35 рублей!',
+    bigText: 'А евро 42!'
+  },
+  {
+    author: 'Гость',
+    text: 'Бесплатно. Скачать. Лучший сайт - http://localhost:3000',
+    bigText: 'На самом деле платно, просто нужно прочитать очень длинное лицензионное соглашение'
+  }
+];
+
+var Article = React.createClass({
+  propTypes: {
+    data: React.PropTypes.shape({
+      author: React.PropTypes.string.isRequired,
+      text: React.PropTypes.string.isRequired,
+      bigText: React.PropTypes.string.isRequired
+    })
+  },
+  getInitialState: function() {
+    return {
+      visible: false
+    };
+  },
+  readmoreClick: function(e) {
+    e.preventDefault();
+    this.setState({visible: true});
+  },
+  render: function() {
+    var author = this.props.data.author,
+        text = this.props.data.text,
+        bigText = this.props.data.bigText,
+        visible = this.state.visible;
+
+    return (
+      <div className='article'>
+        <p className='news__author'>{author}:</p>
+        <p className='news__text'>{text}</p>
+        <a href="#"
+          onClick={this.readmoreClick}
+          className={'news__readmore ' + (visible ? 'none': '')}>
+          Подробнее
+        </a>
+        <p className={'news__big-text ' + (visible ? '': 'none')}>{bigText}</p>
+      </div>
+    )
+  }
+});
+
+var News = React.createClass({
+  propTypes: {
+    data: React.PropTypes.array.isRequired
+  },
+  getInitialState: function() {
+    return {
+      counter: 0
+    }
+  },
+  render: function() {
+    var data = this.props.data;
+    var newsTemplate;
+
+    if (data.length > 0) {
+      newsTemplate = data.map(function(item, index) {
+        return (
+          <div key={index}>
+            <Article data={item} />
+          </div>
+        )
+      })
+    } else {
+      newsTemplate = <p>К сожалению новостей нет</p>
+    }
+
+    return (
+      <div className='news'>
+        {newsTemplate}
+        <strong
+          className={'news__count ' + (data.length > 0 ? '':'none') }>Всего новостей: {data.length}</strong>
+      </div>
+    );
+  }
+});
+
+var Add = React.createClass({
+  getInitialState: function() {
+    return {
+      agreeNotChecked: true,
+      authorIsEmpty: true,
+      textIsEmpty: true
+    };
+  },
+  componentDidMount: function() {
+    ReactDOM.findDOMNode(this.refs.author).focus();
+  },
+  onBtnClickHandler: function(e) {
+    e.preventDefault();
+    var author = ReactDOM.findDOMNode(this.refs.author).value;
+    var text = ReactDOM.findDOMNode(this.refs.text).value;
+    alert(author + '\n' + text);
+  },
+  onCheckRuleClick: function(e) {
+    this.setState({agreeNotChecked: !this.state.agreeNotChecked});
+  },
+  onFieldChange: function(fieldName, e) {
+    if (e.target.value.trim().length > 0) {
+      this.setState({[''+fieldName]:false})
+    } else {
+      this.setState({[''+fieldName]:true})
+    }
+  },
+  render: function() {
+    var agreeNotChecked = this.state.agreeNotChecked,
+        authorIsEmpty = this.state.authorIsEmpty,
+        textIsEmpty = this.state.textIsEmpty;
+    return (
+      <form className='add cf'>
+        <input
+          type='text'
+          className='add__author'
+          onChange={this.onFieldChange.bind(this, 'authorIsEmpty')}
+          placeholder='Ваше имя'
+          ref='author'
+        />
+        <textarea
+          className='add__text'
+          onChange={this.onFieldChange.bind(this, 'textIsEmpty')}
+          placeholder='Текст новости'
+          ref='text'
+        ></textarea>
+        <label className='add__checkrule'>
+          <input type='checkbox' ref='checkrule' onChange={this.onCheckRuleClick}/>Я согласен с правилами
+        </label>
+
+        <button
+          className='add__btn'
+          onClick={this.onBtnClickHandler}
+          ref='alert_button'
+          disabled={agreeNotChecked || authorIsEmpty || textIsEmpty}
+          >
+          Показать alert
+        </button>
+      </form>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return (
+      <div className='app'>
+        <Add />
+        <h3>Новости</h3>
+        <News data={my_news} />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
+  </script>
+</body>
+</html>
