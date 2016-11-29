@@ -1,2 +1,17 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea/
+build/
+examples/basic
+examples/basic-click-counter
+examples/basic-commonjs
+examples/basic-jsx
+examples/basic-jsx-external
+examples/basic-jsx-harmony
+examples/basic-jsx-precompile
+examples/fiber
+examples/jquery-bootstrap
+examples/jquery-mobile
+examples/quadratic
+examples/shared
+examples/transitions
+examples/webcomponents
+examples/README.md

@@ -1,0 +1,13 @@
+body {
+  padding: 40px 20px;
+  background-color: #222;
+  color: #fff
+}
+
+#root {
+  text-align: center;
+}
+
+.main-logo {
+  width: 150px;
+}
