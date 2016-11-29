@@ -1,13 +1,19 @@
 body {
   padding: 40px 20px;
   background-color: #222;
-  color: #fff
+  color: #fff;
+  text-align: center;
 }
 
 #root {
+  margin: auto;
   text-align: center;
 }
 
 .main-logo {
   width: 150px;
 }
+
+.container {
+  display: inline-block;
+  padding: 20px;
