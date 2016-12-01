@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "name": "Petr",
+      "lastname": "Semenov",
+      "age": 23
+    },
+    {
+      "name": "Vladimir",
+      "lastname": "Nikolaev",
+      "age": 18
+    },
+    {
+      "name": "Igor",
+      "lastname": "Grishin",
+      "age": 45
+    },
+    {
+      "name": "Semen",
+      "lastname": "Ivanov",
+      "age": 25
+    },
+    {
+      "name": "Vladimir",
+      "lastname": "Goncharov",
+      "age": 20
+    },
+    {
+      "name": "Stepan",
+      "lastname": "Gerasimov",
+      "age": 31
+    }
+  ]
+}
