@@ -1,31 +1,3 @@
-var data = [{
-              name: "Petr",
-              lastname: "Semenov",
-              age: 23
-            },
-            {
-              name: "Vladimir",
-              lastname: "Nikolaev",
-              age: 18
-            },
-            {
-              name: "Igor",
-              lastname: "Grishin",
-              age: 25
-            },
-            {
-              name: "Semen",
-              lastname: "Ivanov",
-              age: 25
-            },
-            {
-              name: "Vladimir",
-              lastname: "Goncharov",
-              age: 20
-            }];
-
-var dataUsers = [];
-
 function getData() {
 
   'use strict';
@@ -35,16 +7,15 @@ function getData() {
       return response.json();
     })
     .then(function(data) {
-      //alert(data.users[1].name);
-      dataUsers = data.users;
+      var dataUsers = data.users
       ReactDOM.render(<Heroes data={dataUsers} />, document.getElementById('heroes'));
-      alert(dataUsers[1].name);
     })
     .catch( alert );
 
 }
 
-getData();
+
+// getData();
 
 const title = 'Click frontend favorites';
 var element = <h1 className="main-title">{title}</h1>;
@@ -83,13 +54,37 @@ var ElemBox = React.createClass({
 });
 
 var Heroes = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    var context = this;
+    fetch(this.props.url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      context.setState({data: data.users});
+    })
+    .catch( alert );
+  },
+  render: function() {
+    return (
+          <div>
+            <UserList data={this.state.data} />
+          </div>
+    )
+  }
+});
+
+var UserList = React.createClass({
   render: function() {
     return (
           <div>
             {
-              this.props.data.map(function(item) {
+              this.props.data.map(function(item, index) {
                 return (
-                    <div className="heroes-container">
+                    <div className="heroes-container" key={index}>
                       <div>{item.name}</div>
                       <div>{item.lastname}</div>
                       <div className="heroes-age">{item.age}</div>
@@ -100,10 +95,12 @@ var Heroes = React.createClass({
           </div>
     )
   }
-});
+})
 
 
 // Renders
+
+ReactDOM.render(element, document.getElementById('mainTitle'));
 
 ReactDOM.render(
             <div>
@@ -116,5 +113,6 @@ ReactDOM.render(
             </div>,
   document.getElementById('root'));
 
-ReactDOM.render(element, document.getElementById('mainTitle'));
+ReactDOM.render(<Heroes url="data.json" />, document.getElementById('heroes'));
+
 
