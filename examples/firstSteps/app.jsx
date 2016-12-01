@@ -24,6 +24,28 @@ var data = [{
               age: 20
             }];
 
+var dataUsers = [];
+
+function getData() {
+
+  'use strict';
+
+  fetch('data.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      //alert(data.users[1].name);
+      dataUsers = data.users;
+      ReactDOM.render(<Heroes data={dataUsers} />, document.getElementById('heroes'));
+      alert(dataUsers[1].name);
+    })
+    .catch( alert );
+
+}
+
+getData();
+
 const title = 'Click frontend favorites';
 var element = <h1 className="main-title">{title}</h1>;
 
@@ -64,17 +86,17 @@ var Heroes = React.createClass({
   render: function() {
     return (
           <div>
-        {
-          this.props.data.map(function(item) {
-            return (
-                <div className="heroes-container">
-                  <div>{item.name}</div>
-                  <div>{item.lastname}</div>
-                  <div className="heroes-age">{item.age}</div>
-                </div>
-                )
-          })
-        }
+            {
+              this.props.data.map(function(item) {
+                return (
+                    <div className="heroes-container">
+                      <div>{item.name}</div>
+                      <div>{item.lastname}</div>
+                      <div className="heroes-age">{item.age}</div>
+                    </div>
+                    )
+              })
+            }
           </div>
     )
   }
@@ -96,4 +118,3 @@ ReactDOM.render(
 
 ReactDOM.render(element, document.getElementById('mainTitle'));
 
-ReactDOM.render(<Heroes data={data} />, document.getElementById('heroes'));
