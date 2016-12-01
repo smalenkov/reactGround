@@ -28,7 +28,12 @@
     {
       "name": "Stepan",
       "lastname": "Gerasimov",
-      "age": 31
+      "age": 32
+    },
+    {
+      "name": "Andrey",
+      "lastname": "Kokorev",
+      "age": 42
     }
   ]
 }
