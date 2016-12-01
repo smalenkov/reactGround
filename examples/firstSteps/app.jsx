@@ -1,22 +1,3 @@
-function getData() {
-
-  'use strict';
-
-  fetch('data.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      var dataUsers = data.users
-      ReactDOM.render(<Heroes data={dataUsers} />, document.getElementById('heroes'));
-    })
-    .catch( alert );
-
-}
-
-
-// getData();
-
 const title = 'Click frontend favorites';
 var element = <h1 className="main-title">{title}</h1>;
 
