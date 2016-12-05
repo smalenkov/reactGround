@@ -37,7 +37,7 @@ body {
   display: inline-block;
   padding: 12px 30px;
   background-color: #2b2b2b;
-  margin: 0px 14px;
+  margin: 6px 14px;
   border-radius: 3px;
 }
 
@@ -45,4 +45,10 @@ body {
   color: #6cd061;
   font-size: 2em;
   padding: 6px 6px 0 6px;
+}
+
+.user-text {
+  font-size: 10px;
+  max-width: 120px;
+  color: #999999;
 }
