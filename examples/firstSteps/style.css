@@ -51,4 +51,9 @@ body {
   font-size: 10px;
   max-width: 120px;
   color: #999999;
+  cursor: pointer;
+}
+
+.none {
+  display: none;
 }

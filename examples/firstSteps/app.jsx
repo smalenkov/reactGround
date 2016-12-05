@@ -36,11 +36,13 @@ var ElemBox = React.createClass({
 
 var Heroes = React.createClass({
   getInitialState: function() {
-    return {data: []};
+    return {
+      data: []
+    };
   },
-  componentDidMount: function() {
+  loadDataFromJson: function() {
     var context = this;
-    fetch(this.props.url, {cache: 'no-cache'})
+    fetch(this.props.url, {cache: 'no-cach'})
     .then(function(response) {
       return response.json();
     })
@@ -48,6 +50,10 @@ var Heroes = React.createClass({
       context.setState({data: data.users});
     })
     .catch( alert );
+  },
+  componentDidMount: function() {
+    this.loadDataFromJson();
+    setInterval(this.loadDataFromJson, 100);
   },
   render: function() {
     return (
@@ -59,13 +65,16 @@ var Heroes = React.createClass({
 });
 
 var UserList = React.createClass({
+  propTypes: {
+    data: React.PropTypes.array.isRequired
+  },
   render: function() {
     var userListTemplate = this.props.data.map(function(item, index) {
       return (
         <div className="heroes-container" key={index}>
           <div>{item.name}</div>
           <div>{item.lastname}</div>
-          <div className="heroes-age">{item.age}</div>
+          <div className={'heroes-age'}>{item.age}</div>
           <UserText data={item} />
         </div>
       )
@@ -79,10 +88,21 @@ var UserList = React.createClass({
 });
 
 var UserText = React.createClass({
+  getInitialState: function() {
+    return {
+      visible: true
+    };
+  },
+  hideNationality: function() {
+    this.setState({
+      visible: false
+    })
+  },
   render: function() {
+    var visible = this.state.visible;
     var nationality = this.props.data.nationality;
     return (
-      <div className="user-text">
+      <div onClick={this.hideNationality} className={'user-text '  + (visible ? '': 'none')}>
         {nationality}
       </div>
     )
@@ -105,8 +125,6 @@ ReactDOM.render(
             </div>,
   document.getElementById('root'));
 
-setInterval(function() {
-  ReactDOM.render(<Heroes url="data.json"/>, document.getElementById('heroes'))
-}, 1000);
+ReactDOM.render(<Heroes url="data.json"/>, document.getElementById('heroes'));
 
 
