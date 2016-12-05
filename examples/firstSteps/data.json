@@ -3,36 +3,43 @@
     {
       "name": "Petr",
       "lastname": "Semenov",
+      "nationality": "Italian",
       "age": 23
     },
     {
       "name": "Vladimir",
       "lastname": "Nikolaev",
+      "nationality": "Russian",
       "age": 18
     },
     {
       "name": "Igor",
       "lastname": "Grishin",
+      "nationality": "Russian",
       "age": 45
     },
     {
       "name": "Semen",
       "lastname": "Ivanov",
+      "nationality": "France",
       "age": 25
     },
     {
       "name": "Vladimir",
       "lastname": "Goncharov",
+      "nationality": "France",
       "age": 20
     },
     {
       "name": "Stepan",
       "lastname": "Gerasimov",
+      "nationality": "Germany",
       "age": 32
     },
     {
       "name": "Andrey",
       "lastname": "Kokorev",
+      "nationality": "Russian",
       "age": 42
     }
   ]

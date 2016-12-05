@@ -60,30 +60,30 @@ var Heroes = React.createClass({
 
 var UserList = React.createClass({
   render: function() {
+    var userListTemplate = this.props.data.map(function(item, index) {
+      return (
+        <div className="heroes-container" key={index}>
+          <div>{item.name}</div>
+          <div>{item.lastname}</div>
+          <div className="heroes-age">{item.age}</div>
+          <UserText data={item} />
+        </div>
+      )
+    });
     return (
           <div>
-            {
-              this.props.data.map(function(item, index) {
-                return (
-                    <div className="heroes-container" key={index}>
-                      <div>{item.name}</div>
-                      <div>{item.lastname}</div>
-                      <div className="heroes-age">{item.age}</div>
-                      <UserText />
-                    </div>
-                    )
-              })
-            }
+            {userListTemplate}
           </div>
-    )
+    );
   }
 });
 
 var UserText = React.createClass({
   render: function() {
+    var nationality = this.props.data.nationality;
     return (
       <div className="user-text">
-        Небольшой текстик о пользователе :)
+        {nationality}
       </div>
     )
   }
