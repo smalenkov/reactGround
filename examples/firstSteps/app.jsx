@@ -40,7 +40,7 @@ var Heroes = React.createClass({
   },
   componentDidMount: function() {
     var context = this;
-    fetch(this.props.url)
+    fetch(this.props.url, {cache: 'no-cache'})
     .then(function(response) {
       return response.json();
     })
@@ -105,6 +105,8 @@ ReactDOM.render(
             </div>,
   document.getElementById('root'));
 
-ReactDOM.render(<Heroes url="data.json" />, document.getElementById('heroes'));
+setInterval(function() {
+  ReactDOM.render(<Heroes url="data.json"/>, document.getElementById('heroes'))
+}, 1000);
 
 
