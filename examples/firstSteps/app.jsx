@@ -69,6 +69,7 @@ var UserList = React.createClass({
                       <div>{item.name}</div>
                       <div>{item.lastname}</div>
                       <div className="heroes-age">{item.age}</div>
+                      <UserText />
                     </div>
                     )
               })
@@ -76,7 +77,17 @@ var UserList = React.createClass({
           </div>
     )
   }
-})
+});
+
+var UserText = React.createClass({
+  render: function() {
+    return (
+      <div className="user-text">
+        Небольшой текстик о пользователе :)
+      </div>
+    )
+  }
+});
 
 
 // Renders
