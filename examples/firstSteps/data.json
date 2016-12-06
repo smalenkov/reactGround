@@ -34,19 +34,7 @@
       "name": "Stepan",
       "lastname": "Gerasimov",
       "nationality": "Germany",
-      "age": 32
-    },
-    {
-      "name": "Andrey",
-      "lastname": "Kokorev",
-      "nationality": "Russian",
-      "age": 42
-    },
-    {
-      "name": "Misha",
-      "lastname": "Petrov",
-      "nationality": "Russian",
-      "age": 42
+      "age": 35
     }
   ]
 }

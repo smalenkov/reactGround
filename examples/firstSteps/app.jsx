@@ -42,7 +42,7 @@ var Heroes = React.createClass({
   },
   loadDataFromJson: function() {
     var context = this;
-    fetch(this.props.url, {cache: 'no-cach'})
+    fetch(this.props.url, {cache: 'no-cache'})
     .then(function(response) {
       return response.json();
     })
