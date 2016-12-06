@@ -1,7 +1,6 @@
 const title = 'Click frontend favorites';
 var element = <h1 className="main-title">{title}</h1>;
 
-
 // Classes
 
 var ElemBox = React.createClass({
