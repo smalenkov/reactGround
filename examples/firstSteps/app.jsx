@@ -127,4 +127,3 @@ ReactDOM.render(
 
 ReactDOM.render(<Heroes url="data.json"/>, document.getElementById('heroes'));
 
-
