@@ -4,13 +4,13 @@
       "name": "Petr",
       "lastname": "Semenov",
       "nationality": "Italian",
-      "age": 24
+      "age": 23
     },
     {
       "name": "Vladimir",
       "lastname": "Nikolaev",
       "nationality": "Russian",
-      "age": 18
+      "age": 19
     },
     {
       "name": "Igor",
@@ -39,6 +39,12 @@
     {
       "name": "Andrey",
       "lastname": "Kokorev",
+      "nationality": "Russian",
+      "age": 42
+    },
+    {
+      "name": "Misha",
+      "lastname": "Petrov",
       "nationality": "Russian",
       "age": 42
     }
