@@ -42,11 +42,25 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _nums = __webpack_require__(1);
+
+	alert('\u0421\u0443\u043C\u043C\u0430 \u0438\u043C\u043F\u043E\u0440\u0442\u043E\u0432: ' + (_nums.one + _nums.two));
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
-	import { one, two } from './nums';
+	"use strict";
 
-	alert(`Сумма импортов: ${ one + two }`);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var one = exports.one = 1;
+	var two = exports.two = 2;
 
 /***/ }
 /******/ ]);
