@@ -1,4 +1,4 @@
-const title = 'Click frontend favorites';
+const title = 'Click FrontEnd favorites';
 var element = <h1 className="main-title">{title}</h1>;
 
 // Classes
